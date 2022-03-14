@@ -6,6 +6,8 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const mongoose = require('mongoose');
 
+const userRoutes = require('./routes/user');
+
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
