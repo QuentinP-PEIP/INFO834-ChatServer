@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({
   
 app.use(bodyParser.json());
 
+app.use('/api/auth', userRoutes);
+
 const connectDb = async () => {
     await mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology : true}).then(
         () => {
@@ -29,6 +31,15 @@ const connectDb = async () => {
 }
   
 connectDb().catch(error => console.error(error))
+
+//////////////////////////////
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
 
 app.get('/chat', (req, res) => {
     var path = require('path');
