@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({
   
 app.use(bodyParser.json());
 
-app.use('/api/auth', userRoutes);
+app.use('/', userRoutes);
+app.use('/signup', userRoutes);
 
 const connectDb = async () => {
     await mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology : true}).then(
@@ -55,6 +56,12 @@ app.get('/', (req, res) => {
   res.sendFile(parentDir + '/frontend/auth.html');
 });
 
+app.get('/signup', (req, res) => {
+  var path = require('path');
+  var parentDir = path.dirname(path.dirname(__dirname + '/index.js'));
+  res.sendFile(parentDir + '/frontend/signup.html');
+});
+
 var Message = require('./models/message');
 
 io.on('connection', (socket) => {
@@ -72,6 +79,8 @@ io.on('connection', (socket) => {
         console.log('message : ' + msg);
       });
   });
+
+///////////////////////////////////////
 
 server.listen(3000, () => {
   console.log('listening on *:3000');
