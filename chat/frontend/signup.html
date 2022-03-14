@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="style.css" type="text/css" />
         <style>
             body{
-                background: #67BE4B;
+                background: #029BDE;
             }
             #container{
                 width:400px;
@@ -25,6 +25,8 @@
                 width: 38%;
                 margin: 0 auto;
                 padding-bottom: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color: #029BDE;
             }
 
             /* Full-width inputs */
@@ -39,7 +41,7 @@
 
             /* Set a style for all buttons */
             input[type=submit] {
-                background-color: #53af57;
+                background-color: #029BDE;
                 color: white;
                 padding: 14px 20px;
                 margin: 8px 0;
@@ -49,8 +51,28 @@
             }
             input[type=submit]:hover {
                 background-color: white;
-                color: #53af57;
-                border: 1px solid #53af57;
+                color: #029BDE;
+                border: 1px solid #029BDE;
+            }
+
+            #redirectToConnection {
+                display : flex;
+                justify-content : center;
+                
+            }
+
+            #redirectToConnection a {
+
+                text-decoration: none;
+                color: #029BDE;
+            }
+
+            #redirectToConnection a:hover {
+
+                font-weight: bold;
+            }
+            label {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
             }
         </style>
     </head>
@@ -61,13 +83,17 @@
             <form method="POST" action="/signup">
                 <h1>Inscription</h1>
                 
-                <label><b>Nom d'utilisateur</b></label>
+                <label>Nom d'utilisateur</label>
                 <input type="text" placeholder="Entrer votre mail" name="email" required>
 
-                <label><b>Mot de passe</b></label>
+                <label>Mot de passe</label>
                 <input type="password" placeholder="Entrer votre mot de passe" name="password" required>
 
-                <input type="submit" id='submit' value='Submit' >
+                <input type="submit" id='submit' value="S'incrire" >
+
+                <div id="redirectToConnection">
+                    <a  href='/'>Connectez vous</a>
+                </div>
             </form>
         </div>
     </body>
