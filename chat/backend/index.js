@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/user');
 
+const authMW = require('./middleware/auth');
+
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
@@ -20,6 +22,9 @@ app.use(bodyParser.json());
 
 app.use('/', userRoutes);
 app.use('/signup', userRoutes);
+// app.use('/accueil', authMW);
+// app.use('/chat', authMW);
+
 
 const connectDb = async () => {
     await mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology : true}).then(
@@ -60,6 +65,12 @@ app.get('/signup', (req, res) => {
   var path = require('path');
   var parentDir = path.dirname(path.dirname(__dirname + '/index.js'));
   res.sendFile(parentDir + '/frontend/signup.html');
+});
+
+app.get('/accueil', (req, res) => {
+  var path = require('path');
+  var parentDir = path.dirname(path.dirname(__dirname + '/index.js'));
+  res.sendFile(parentDir + '/frontend/accueil.html');
 });
 
 var Message = require('./models/message');

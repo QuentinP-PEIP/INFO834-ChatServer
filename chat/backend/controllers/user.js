@@ -11,7 +11,7 @@ function signup (req, res, next) {
           password: hash
         });
         user.save()
-          .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+          .then(() => res.redirect('/accueil'))
           .catch(error => res.status(400).json({ error }));
       })
       .catch(error => res.status(500).json({ error }));
@@ -31,19 +31,30 @@ User.findOne({ email: req.body.email })
             console.log("USER PASSWORD : " + user.password)
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
         }
+
+        else {
+          console.log("C'EST VALIDE")
+          res.redirect('/accueil');
+        }
+
+        /*
         res.status(200).json({
             userId: user._id,
+            userEmail: req.body.email,
+            userPassword: req.body.password,
             token: jwt.sign(
                 { userId: user._id },
                 'RANDOM_TOKEN_SECRET',
                 { expiresIn: '24h' }
               )
-        });
+        });   
+        */  
         })
         .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
 };
+
 
 module.exports.login = login;
 module.exports.signup = signup;

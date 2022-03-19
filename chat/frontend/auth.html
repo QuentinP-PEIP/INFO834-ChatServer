@@ -79,12 +79,19 @@
                 color: #029BDE;
             }
         </style>
+
+        <script>
+            function redirectToAccueil() {
+                console.log("DANS LA FONCTION")
+                window.location.replace("/accueil")
+            }
+        </script>
     </head>
     <body>
         <div id="container">
             <!-- zone de connexion -->
             
-            <form method="POST" action="/login">
+            <form method="POST" id="login" action="/login">
                 <h1>Connexion</h1> 
                 
                 <label>Nom d'utilisateur</label>
@@ -95,8 +102,10 @@
 
                 <input type="submit" id='submit' value='Connexion' >
 
+                <!-- <button onclick="redirectToAccueil()">Replace document</button> -->
+
                 <div id="redirectToSignup">
-                <a  href='/signup'>Inscrivez vous</a>
+                    <a  href='/signup'>Inscrivez vous</a>
                 </div>
             </form>
         

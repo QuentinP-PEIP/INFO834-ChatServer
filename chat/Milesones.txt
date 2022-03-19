@@ -1,0 +1,9 @@
+1) Se connecter et arriver sur une autre page qui spécifie qui est connecté
+2) L'utilisateur connecté peut envoyé un message (destinataire non spécifié)
+3) Il peut choisir un destinataire parmis les autres utilisateurs
+4) Une page qui ne montre que les utilisateur connectés et permettant d'ouvrir les chats
+5) L'historique de la conversation est rechargé 
+6) Simuler l'utilisation avec deux connexions
+7) Utiliser Redis pour le rendre résistant aux pannes (ReplicaSet de MongoDB)
+
+GitHub Guide : https://github.com/LoginRadius/engineering-blog-samples/tree/master/NodeJs/NodejsAuthenticationGuide
