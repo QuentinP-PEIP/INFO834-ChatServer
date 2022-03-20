@@ -36,7 +36,7 @@ function login (req, res, next) {
         else {
           console.log("C'EST VALIDE")
           connection(req);
-          res.redirect('/accueil');
+          res.redirect('/' + user._id);
         }
 
         /*
