@@ -70,9 +70,6 @@ function disconnection (req, res) {
 }
 
 
-
-
-
 module.exports.login = login;
 module.exports.signup = signup;
 module.exports.disconnection = disconnection;
