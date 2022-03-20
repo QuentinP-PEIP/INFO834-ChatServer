@@ -12,4 +12,10 @@ router.post('/login', (req, res) => {
   
   });
 
+router.post('/disconnection', (req, res) => {
+
+  userCtrl.disconnection(req, res);
+
+});
+
 module.exports = router;

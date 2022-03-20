@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/', userRoutes);
 app.use('/signup', userRoutes);
-// app.use('/accueil', authMW);
+app.use('/accueil', userRoutes);
 // app.use('/chat', authMW);
 
 

@@ -7,18 +7,19 @@ function signup (req, res, next) {
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
+          firstname: req.body.firstname,
           email: req.body.email,
-          password: hash
+          password: hash,
         });
         user.save()
-          .then(() => res.redirect('/accueil'))
+          .then(() => res.redirect('/'))
           .catch(error => res.status(400).json({ error }));
       })
       .catch(error => res.status(500).json({ error }));
   };
 
 function login (req, res, next) {
-User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email })
     .then(user => {
     if (!user) {
         console.log("EMAIL : " + req.body.email + " PASSWORD : " + req.body.password)
@@ -34,6 +35,7 @@ User.findOne({ email: req.body.email })
 
         else {
           console.log("C'EST VALIDE")
+          connection(req);
           res.redirect('/accueil');
         }
 
@@ -55,6 +57,22 @@ User.findOne({ email: req.body.email })
     .catch(error => res.status(500).json({ error }));
 };
 
+function connection (req, res) {
+  User.findOneAndUpdate({ email: req.body.email }, {connected : true}, {new: true})
+  .then(() => {});
+}
+
+function disconnection (req, res) {
+  console.log("JE SUIS DANS DISCONNECTION")
+  console.log("EMAIL : " + req.body.email)
+  User.findOneAndUpdate({ email: req.body.email }, {connected : false}, {new: true})
+  .then(() => res.redirect('/'));
+}
+
+
+
+
 
 module.exports.login = login;
 module.exports.signup = signup;
+module.exports.disconnection = disconnection;

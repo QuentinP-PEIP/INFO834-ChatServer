@@ -2,9 +2,10 @@
 <html>
     <head>
        <meta charset="utf-8">
+       <!-- <script src="/socket.io/socket.io.js"></script> -->
        <script>
-        var email = document.getElementById('email');
-        email.textContent = 'Bonjour, monde !';
+        // var socket = io();        
+
        </script>
     </head>
     <body>
@@ -12,5 +13,9 @@
         <div>
             <h2 id="email"></h2>
         </div>
+
+        <form method="POST" action="/disconnection">
+            <input type="submit" value="Déconnexion">
+          </form>
     </body>
 </html>
