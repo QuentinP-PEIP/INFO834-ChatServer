@@ -69,7 +69,20 @@ function disconnection (req, res) {
   .then(() => res.redirect('/'));
 }
 
+function getUsername (req, res) {
+  User.findOne({ _id: req.body.id })
+  .then(user => {
+    if (user) {
+      res.user.username
+    }
+    else {
+      console.log("Utilisateur non trouvé")
+    }
+  })
+}
+
 
 module.exports.login = login;
 module.exports.signup = signup;
 module.exports.disconnection = disconnection;
+module.exports.getUsername = getUsername;

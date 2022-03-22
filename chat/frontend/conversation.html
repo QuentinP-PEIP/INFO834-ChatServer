@@ -4,7 +4,11 @@
        <meta charset="utf-8">
        <!-- <script src="/socket.io/socket.io.js"></script> -->
        <script>
-        // var socket = io();        
+        // var socket = io();
+        var urlcourante = urlcourante.replace(/\/$/, "");
+
+        queue_url = urlcourante.substring (urlcourante.lastIndexOf( "/" )+1 );
+        alert (' Queue URL : \n' +queueurl);
 
        </script>
     </head>

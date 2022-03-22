@@ -3,9 +3,26 @@
 <html>
   <head>
     <title>Chat</title>
+    <script>
+      var urlcourante = document.location.href; 
+      var urlcourante = urlcourante.replace(/\/$/, "");
+      id_url = urlcourante.substring (urlcourante.lastIndexOf( "/" )+1 );
+
+    </script>
   </head>
   <body>
-      <h1>Accueil de l'ID</h1>
-      <p>Bonjour</p>
+    <h1 id="titre">Accueil</h1>
+    <div id="info_user">
+      <p id="id_user"></p>
+      <p id="username_user"></p>
+    </div>
+
+    <form method="POST" action="/disconnection">
+      <input type="submit" id='submit' value='Déconnexion' >
+    </form>
   </body>
+
+  <script>
+    var userId = document.getElementById('info_user').innerHTML = "Identifiant de l'utilisateur : " + id_url;
+  </script>
 </html>

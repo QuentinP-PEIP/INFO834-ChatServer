@@ -85,7 +85,7 @@ io.on('connection', (socket) => {
     });
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg);
-        (new Message({ contenu: msg, utilisateura: "Quentin", utilisateurb: "Romain"}) ).save(function (err, message) {
+        (new Message({ contenu: msg, senderId: "Quentin"}) ).save(function (err, message) {
             if (err) return console.error(err);
             console.log("Message de " + message.utilisateura + " à destination de " + message.utilisateurb + " a été stocké");
           });
