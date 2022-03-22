@@ -1,28 +1,31 @@
 const express = require('express');
 const app = express();
+
 const http = require('http');
 const server = http.createServer(app);
+
 const { Server } = require("socket.io");
 const io = new Server(server);
+
 const mongoose = require('mongoose');
 
+const conversationRoutes = require('./routes/conversation');
+const messageRoutes = require('./routes/message');
 const userRoutes = require('./routes/user');
-
-const authMW = require('./middleware/auth');
 
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
-
     extended : true
-  
-  }));
+}));
   
 app.use(bodyParser.json());
 
 app.use('/', userRoutes);
 app.use('/signup', userRoutes);
-app.use('/accueil', userRoutes);
+app.use('/:id', userRoutes);
+app.use(conversationRoutes);
+app.use(messageRoutes);
 // app.use('/chat', authMW);
 
 
@@ -42,13 +45,6 @@ connectDb().catch(error => console.error(error))
 
 //////////////////////////////
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  next();
-});
-
 app.get('/chat', (req, res) => {
     var path = require('path');
     var parentDir = path.dirname(path.dirname(__dirname + '/index.js'));
@@ -67,10 +63,16 @@ app.get('/signup', (req, res) => {
   res.sendFile(parentDir + '/frontend/signup.html');
 });
 
-app.get('/accueil', (req, res) => {
+app.get('/:id', (req, res) => {
   var path = require('path');
   var parentDir = path.dirname(path.dirname(__dirname + '/index.js'));
   res.sendFile(parentDir + '/frontend/accueil.html');
+});
+
+app.get('/conversation', (req, res) => {
+  var path = require('path');
+  var parentDir = path.dirname(path.dirname(__dirname + '/index.js'));
+  res.sendFile(parentDir + '/frontend/conversation.html');
 });
 
 var Message = require('./models/message');
